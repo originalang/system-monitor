@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+
+    system_monitor:
+        build: ./system_monitor
+        container_name: system_monitor
+        restart: always
+        environment:
+            - App_NAME=SystemMonitor
+        expose:
+            - 8080
+
+    dashboard:
+        build: ./dashboard
+        container_name: dashboard
+        restart: always
+        ports:
+            - "38712:8080"
+        depends_on:
+            - system_monitor
+
+    nginx_server:
+        build: ./nginx
+        container_name: nginx
+        restart: always
