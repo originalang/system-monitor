@@ -5,7 +5,7 @@ def get_temperatures(fahrenheit=False):
     temperatures = []
 
     for key, value in readings.items():
-        zone = {'type': key, 'temperature_sensors': []}
+        zone = {'type': key, 'unit': 'F' if fahrenheit else 'C', 'temperature_sensors': []}
 
         for sensor in value:
             zone['temperature_sensors'].append({'label': sensor.label, 'current': sensor.current, 'high': sensor.high, 'critical': sensor.critical})
