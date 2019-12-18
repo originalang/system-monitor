@@ -12,7 +12,7 @@
 		<div class="block-container">
 			<% temperature_list.forEach(function(entry){ %>
 				<% entry.temperature_sensors.forEach(function(sensor){ %>
-					<div class="block" style="background-color: <%= sensor.current < sensor.high - 20 ? '#95ff82' : (sensor.current >= sensor.high ? '#ff7c6b' : '#ffee80') %>">
+					<div class="block" style="background-color: <%= sensor.current < sensor.high - 40 ? '#95ff82' : (sensor.current >= sensor.high ? '#ff7c6b' : '#ffee80') %>">
 						<div class="block-content">
 							<span class="absolute-center text-large font-fredericka"><%= sensor.current %></span>
 						</div>
