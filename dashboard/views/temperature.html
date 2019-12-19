@@ -1,41 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great&amp;display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="css/main.css">
-		<title>Temperature Monitor</title>
-	</head>
-	<body>
-		<div class="block-container">
-			{% macro background_color(temperature, high) %}
-				{% if temperature < high - 40 %}
-					#95ff82
-				{% elif temperature >= high %}
-					#ff7c6b
-				{% else %}
-					#ffee80
-				{% endif %}
-			{% endmacro %}
-			{% for entry in temperature_list %}
-				{% for sensor in entry.temperature_sensors %}
-					<div class="block" style="background-color: {{ background_color(sensor.current, sensor.high) }}">
-						<div class="block-content">
-							<span class="absolute-center text-large font-fredericka">{{ sensor.current + '°' + entry.unit }}</span>
-						</div>
-						<div class="block-description">
-							<div class="block-title text-regular">
-								{{ sensor.label }}
-							</div>					
-						</div>
-						<div class="block-footer">
-							<span class="absolute-center">{{ entry.type }}</span>
-						</div>
+{% macro background_color(temperature, high) %}
+	{% if temperature < high - 40 %}
+		#95ff82
+	{% elif temperature >= high %}
+		#ff7c6b
+	{% else %}
+		#ffee80
+	{% endif %}
+{% endmacro %}
+
+{% extends "templates/base.html" %}
+
+{% block title %}
+	<title>Temperature Overview</title>
+{% endblock %}
+
+{% block body %}
+	<div class="block-container">
+		{% for entry in temperature_list %}
+			{% for sensor in entry.temperature_sensors %}
+				<div class="block" style="background-color: {{ background_color(sensor.current, sensor.high) }}">
+					<div class="block-content">
+						<span class="absolute-center text-large font-fredericka">{{ sensor.current + '°' + entry.unit }}</span>
 					</div>
-				{% endfor %}
+					<div class="block-description">
+						<div class="block-title text-regular">
+							{{ sensor.label }}
+						</div>					
+					</div>
+					<div class="block-footer">
+						<span class="absolute-center">{{ entry.type }}</span>
+					</div>
+				</div>
 			{% endfor %}
-		</div>
-	</body>
-</html>
+		{% endfor %}
+	</div>
+{% endblock %}
