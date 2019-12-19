@@ -10,23 +10,32 @@
 	</head>
 	<body>
 		<div class="block-container">
-			<% temperature_list.forEach(function(entry){ %>
-				<% entry.temperature_sensors.forEach(function(sensor){ %>
-					<div class="block" style="background-color: <%= sensor.current < sensor.high - 40 ? '#95ff82' : (sensor.current >= sensor.high ? '#ff7c6b' : '#ffee80') %>">
+			{% macro background_color(temperature, high) %}
+				{% if temperature < high - 40 %}
+					#95ff82
+				{% elif temperature >= high %}
+					#ff7c6b
+				{% else %}
+					#ffee80
+				{% endif %}
+			{% endmacro %}
+			{% for entry in temperature_list %}
+				{% for sensor in entry.temperature_sensors %}
+					<div class="block" style="background-color: {{ background_color(sensor.current, sensor.high) }}">
 						<div class="block-content">
-							<span class="absolute-center text-large font-fredericka"><%= sensor.current + '°' + entry.unit %></span>
+							<span class="absolute-center text-large font-fredericka">{{ sensor.current + '°' + entry.unit }}</span>
 						</div>
 						<div class="block-description">
 							<div class="block-title text-regular">
-								<%= sensor.label %>
+								{{ sensor.label }}
 							</div>					
 						</div>
 						<div class="block-footer">
-							<span class="absolute-center"><%= entry.type %></span>
+							<span class="absolute-center">{{ entry.type }}</span>
 						</div>
 					</div>
-				<% }); %>
-			<% }); %>
+				{% endfor %}
+			{% endfor %}
 		</div>
 	</body>
 </html>
