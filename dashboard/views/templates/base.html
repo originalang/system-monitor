@@ -12,6 +12,10 @@
     <body>
         {% include "./navigation.html" %}
 
-        {% block body %}{% endblock %}
+        <div class="page-content">
+            {% block body %}{% endblock %}
+        </div>
+
+        {% include "./scripts.html" %}
     </body>
 </html>
