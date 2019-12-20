@@ -31,7 +31,7 @@ nunjucks.configure('views', {
 
 // serve up main page
 app.get('/', (req, res) => {
-	return res.send('WORKING');
+	return res.render("index.html");
 });
 
 // path routing
