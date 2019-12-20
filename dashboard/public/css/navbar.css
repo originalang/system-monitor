@@ -1,0 +1,36 @@
+.navbar {
+    background-color: #2e2d2b;
+    height: 100%;
+    position: fixed;
+    width: 4em;
+}
+
+.navbar-item {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    height: 4em;
+    list-style: none;
+}
+
+.navbar-section {
+    margin-top: 4em;
+}
+
+.navbar-item a {
+    color: #b8b8b8;
+    display: block;
+    font-size: 1.6em;
+    height: 100%;
+    width: 100%;
+    transition: 0.8s ease;
+}
+
+.navbar-item a:hover {
+    background-color: #404040;
+}
+
+.navbar-bottom {
+    position: absolute;
+    bottom: 0px;
+}
